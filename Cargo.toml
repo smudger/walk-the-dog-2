@@ -1,0 +1,65 @@
+# You must change these to your own details.
+[package]
+name = "walk-the-dog-2"
+description = "A second implementation of the Walk The Dog game, including all optional exercises."
+version = "0.1.0"
+authors = ["smudger <15144861+smudger@users.noreply.github.com>"]
+repository = "https://github.com/smudger/walk-the-dog-2"
+license = "MIT"
+categories = ["wasm"]
+readme = "README.md"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[profile.release]
+# This makes the compiled code faster and smaller, but it makes compiling slower,
+# so it's only enabled in release mode.
+lto = true
+
+[dependencies]
+# The `wasm-bindgen` crate provides the bare minimum functionality needed
+# to interact with JavaScript.
+wasm-bindgen = "0.2.95"
+
+# The `console_error_panic_hook` crate provides better debugging of panics by
+# logging them with `console.error`. 
+console_error_panic_hook = "0.1.7"
+
+rand = "0.8.5"
+getrandom = { version = "0.2.15", features = ["js"] }
+futures = "0.3.31"
+wasm-bindgen-futures = "0.4.45"
+serde = { version = "1.0.214", features = ["derive"] }
+serde-wasm-bindgen = "0.6.5"
+anyhow = "1.0.91"
+async-trait = "0.1.83"
+js-sys = "0.3.72"
+
+# The `web-sys` crate allows you to interact with the various browser APIs,
+# like the DOM.
+[dependencies.web-sys]
+version = "0.3.72"
+features = [
+    "console",
+    "Window",
+    "Document",
+    "HtmlCanvasElement",
+    "HtmlImageElement",
+    "CanvasRenderingContext2d",
+    "Element",
+    "Response",
+    "Performance",
+    "KeyboardEvent",
+    "AudioContext",
+    "AudioBuffer",
+    "AudioBufferSourceNode",
+    "AudioDestinationNode",
+    "AudioBufferOptions",
+]
+
+# These crates are used for running unit tests.
+[dev-dependencies]
+wasm-bindgen-test = "0.3.45"
+js-sys = "0.3.72"
