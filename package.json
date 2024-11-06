@@ -12,5 +12,8 @@
     "@rspack/core": "^1.0.14",
     "@wasm-tool/wasm-pack-plugin": "^1.7.0",
     "rimraf": "^6.0.1"
+  },
+  "dependencies": {
+    "netlify-cli": "^17.37.2"
   }
 }
