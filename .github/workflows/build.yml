@@ -1,5 +1,7 @@
-on: [push]
 name: build
+on: [push]
+env:
+    CARGO_TERM_COLOR: always
 jobs:
     build:
         runs-on: ubuntu-latest
@@ -9,15 +11,9 @@ jobs:
               with:
                 targets: wasm32-unknown-unknown
                 components: clippy
-            - uses: actions-rs/install@v0.1
-              with:
-                crate: wasm-pack
-                version: 0.13.1
-                use-tool-cache: true
-            - name: Annotate commit with clippy warnings
-              uses: actions-rs/audit-check@v1
-              with:
-                token: ${{ secrets.GITHUB_TOKEN }}
+            - uses: Swatinem/rust-cache@v2
+            - run: cargo install wasm-pack --version=0.13.1
+            - run: cargo clippy -- -D warnings
             - uses: actions/setup-node@v4
               with:
                 node-version: '22.11.0'
